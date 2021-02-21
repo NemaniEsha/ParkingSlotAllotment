@@ -106,14 +106,31 @@ public class AdminServiceTest {
 		when(parkingFloorRepository.save(floor)).thenReturn(floor);
 		assertEquals(floor, adminService.createParkingFloor(floor));
 	}
-	/*@Test
+	@Test
 	public void testFetchAllParkingFloors() {
 		Address address = new Address(2,"pune", "MH", "411006");
 		ParkingPremise premise = new ParkingPremise(4,"pre1", 3, address, "P1");
 		ParkingFloor floor1 = new ParkingFloor(5, "first", 4, premise);
 		ParkingFloor floor2 = new ParkingFloor(6, "second", 6, premise);	
  		when(parkingFloorRepository.findAll()).thenReturn(Stream.of(floor1, floor2).collect(Collectors.toList()));
- 		assertEquals(2, adminService.fetchingAlleParkingFloor());
+ 		assertEquals(2, ((List<ParkingFloor>) adminService.fetchingAlleParkingFloor()).size());
 	
-	}*/
+	
+	}
+	@Test
+	public void testFetchParkingFloorById() {
+		Address address = new Address(5,"pune", "MH", "411006");
+		ParkingPremise premise = new ParkingPremise(4,"pre1", 3, address, "P1");
+		Optional<ParkingFloor> floor = Optional.of(new ParkingFloor(5, "first", 4, premise));
+		when(parkingFloorRepository.findById(5)).thenReturn(floor);
+		
+	}
+	
+	@Test
+	public void testForUpdateParkingFloor() {
+		Address address = new Address(6,"pune", "MH", "411006");
+		ParkingPremise premise = new ParkingPremise(4,"pre1", 3, address, "P1");
+		ParkingFloor floor = new ParkingFloor(5, "second", 4, premise);
+		when(parkingFloorRepository.save(floor)).thenReturn(floor);
+}
 }
