@@ -24,7 +24,9 @@ public class UserController {
 	
 	@Autowired
 	private MapValidationErrorService mapValidationErrorService;
-	
+	/*
+	 * Register user 
+	 */
 	@PostMapping("/api/adduser")
 	public ResponseEntity<?> addUser(@RequestBody User user,BindingResult result)
 	{
@@ -35,6 +37,9 @@ public class UserController {
 		return new ResponseEntity<User>(registerUser, HttpStatus.OK);
 	}
 	
+	/*
+	 * Get user details by Email
+	 */
 	@GetMapping("/user/getUserByEmail/{email}")
 	public  ResponseEntity<?> getUserByEmail(@PathVariable String email)
 	{
@@ -42,11 +47,17 @@ public class UserController {
 		return new ResponseEntity<User>(userService.getUserByEmail(email), HttpStatus.OK);
 	}
 	
+	/*
+	 * Get user details by userId
+	 */
 	@GetMapping("/user/getUserById/{userId}")
 	public ResponseEntity<?> getUserById(@PathVariable int userId) {
 		return new ResponseEntity<User>(userService.getUserById(userId), HttpStatus.OK);
 	}
 	
+	/*
+	 * Delete User by userId
+	 */
 	@DeleteMapping("/user/deleteUserById/{userId}")
 	public ResponseEntity<?> deleteUser(@PathVariable int userId) {
 		boolean status = userService.deleteUserById(userId);
@@ -55,6 +66,9 @@ public class UserController {
 		return new ResponseEntity<String>("Failed", HttpStatus.OK);
 	}
 	
+	/*
+	 * Update user details
+	 */
 	@PutMapping("/user/update")
 	public User updateUser(@RequestBody User user) {
 		return userService.updateUser(user);

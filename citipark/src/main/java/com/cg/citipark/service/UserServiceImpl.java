@@ -15,7 +15,9 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserRepository userRepository;
 	
-	
+	/*
+	 * Register user
+	 */
 	@Override
 	public User addUser(User user) {
 		User registerUser = userRepository.findByEmail(user.getEmail());
@@ -28,6 +30,10 @@ public class UserServiceImpl implements UserService{
 					+ " already exists");
 		
 	}
+	
+	/*
+	 * Get user details by email id
+	 */
 	@Override
     public User getUserByEmail(String email) {
 		
@@ -38,7 +44,10 @@ public class UserServiceImpl implements UserService{
 	 		}
 	 		return user;
 	    }
-     
+	
+	/*
+	 * Get user details by user Id
+	 */
 	@Override
     public User getUserById(int userId) {
 		Optional<User> user = userRepository.findById(userId);
@@ -49,6 +58,9 @@ public class UserServiceImpl implements UserService{
 		return user.get();
 	}
 	
+	/*
+	 * Delete user by user Id
+	 */
 	@Override
 	public boolean deleteUserById(int userId) {
 		Optional<User> user = userRepository.findById(userId);
@@ -57,6 +69,10 @@ public class UserServiceImpl implements UserService{
 		userRepository.deleteById(userId);
 		return true;
 	}
+	
+	/*
+	 * Update user details
+	 */
 	@Override
      public User updateUser(User user) {
  		User updateUser = userRepository.findById(user.getUserId()).get();
@@ -64,9 +80,6 @@ public class UserServiceImpl implements UserService{
  			return userRepository.save(user);
  		return null;
  	}
-	
-    
- 	
-
+		
 }
 

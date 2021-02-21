@@ -6,10 +6,25 @@ import com.cg.citipark.beans.User;
 
 @Service
 public interface UserService {
+	/*
+	 * Register user 
+	 */
 	public User addUser(User user);
+	/*
+	 * Get user details by email id
+	 */
 	public User getUserByEmail(String email);
-	 public User getUserById(int userId);
+	/*
+	 * Get user details by userId
+	 */
+	public User getUserById(int userId);
+	/*
+	 * Delete user by userId
+	 */
 	public boolean deleteUserById(int userId);
+	/*
+	 * Update user details
+	 */
 	public User updateUser(User user);
 	
 

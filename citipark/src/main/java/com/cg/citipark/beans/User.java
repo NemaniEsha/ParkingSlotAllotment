@@ -11,20 +11,37 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name="users")
 public class User {
+	/*
+	 * Id of the user
+	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int userId;
+	/*
+	 * First name 
+	 */
 	@NotBlank(message = "First name required")
 	private String firstName;
+	/*
+	 * Last Name
+	 */
 	@NotBlank(message = "Lastname required")
 	private String lastName;
+	/*
+	 * Email Id
+	 */
 	@NotBlank(message = "Email Id required")
 	@Column(unique = true)
 	private String email;
+	/*
+	 * Mobile Number
+	 */
 	@NotBlank(message = "Mobile number required")
 	@Column(nullable = false, unique = true, length = 10)
 	private String mobile;
-	
+	/*
+	 * Getters and Setters
+	 */
 	public int getUserId() {
 		return userId;
 	}
@@ -56,10 +73,15 @@ public class User {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
+	/*
+	 * Default Constructor
+	 */
 	public User() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
+	/*
+	 * Parameterized Constructor
+	 */
 	public User(int userId, @NotBlank(message = "First name required") String firstName,
 			@NotBlank(message = "Lastname required") String lastName,
 			@NotBlank(message = "Email Id required") String email,
@@ -71,7 +93,4 @@ public class User {
 		this.email = email;
 		this.mobile = mobile;
 	}
-
-
-	
 }
